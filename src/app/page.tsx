@@ -247,6 +247,14 @@ function HeroSection() {
   const fullTitle = resumeData.title;
   const [typed, setTyped] = useState("");
   const [started, setStarted] = useState(false);
+  const [heroCopied, setHeroCopied] = useState(false);
+
+  const handleHeroCopy = useCallback(() => {
+    navigator.clipboard.writeText(resumeData.email).then(() => {
+      setHeroCopied(true);
+      setTimeout(() => setHeroCopied(false), 2000);
+    });
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => setStarted(true), 600);
@@ -370,13 +378,19 @@ function HeroSection() {
           >
             <Linkedin className="h-5 w-5" />
           </a>
-          <a
-            href={`mailto:${resumeData.email}`}
-            className="p-2.5 rounded-full border border-border hover:border-emerald-500/50 hover:bg-accent transition-all"
-            aria-label="Email"
+          <button
+            onClick={handleHeroCopy}
+            className="relative p-2.5 rounded-full border border-border hover:border-emerald-500/50 hover:bg-accent transition-all"
+            aria-label="Copy Email"
+            title={heroCopied ? "Copied!" : "Copy email"}
           >
-            <Mail className="h-5 w-5" />
-          </a>
+            {heroCopied ? <Check className="h-5 w-5 text-emerald-500" /> : <Mail className="h-5 w-5" />}
+            {heroCopied && (
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-emerald-500 text-white px-2 py-0.5 rounded whitespace-nowrap">
+                Copied!
+              </span>
+            )}
+          </button>
         </motion.div>
       </div>
 
@@ -903,6 +917,15 @@ function ContactSection() {
 /*  Footer                                                             */
 /* ------------------------------------------------------------------ */
 function Footer() {
+  const [footerCopied, setFooterCopied] = useState(false);
+
+  const handleFooterCopy = useCallback(() => {
+    navigator.clipboard.writeText(resumeData.email).then(() => {
+      setFooterCopied(true);
+      setTimeout(() => setFooterCopied(false), 2000);
+    });
+  }, []);
+
   return (
     <footer className="border-t py-8 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -929,13 +952,14 @@ function Footer() {
           >
             <Linkedin className="h-4 w-4" />
           </a>
-          <a
-            href={`mailto:${resumeData.email}`}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Email"
+          <button
+            onClick={handleFooterCopy}
+            className="relative text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Copy Email"
+            title={footerCopied ? "Copied!" : "Copy email"}
           >
-            <Mail className="h-4 w-4" />
-          </a>
+            {footerCopied ? <Check className="h-4 w-4 text-emerald-500" /> : <Mail className="h-4 w-4" />}
+          </button>
         </div>
       </div>
     </footer>
