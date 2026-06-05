@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Check, Copy } from "lucide-react";
 import { resumeData } from "@/lib/portfolio-data";
 import { ThemeToggle } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,8 @@ import {
   MessageSquare,
   Sparkles,
   Send,
+  Activity,
+  Shield,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -128,11 +131,10 @@ function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-background/80 backdrop-blur-xl border-b shadow-sm"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a
@@ -352,6 +354,8 @@ function HeroSection() {
         >
           <a
             href={resumeData.github}
+            target="_blank"
+            rel="noopener noreferrer"
             className="p-2.5 rounded-full border border-border hover:border-emerald-500/50 hover:bg-accent transition-all"
             aria-label="GitHub"
           >
@@ -359,6 +363,8 @@ function HeroSection() {
           </a>
           <a
             href={resumeData.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             className="p-2.5 rounded-full border border-border hover:border-emerald-500/50 hover:bg-accent transition-all"
             aria-label="LinkedIn"
           >
@@ -541,11 +547,19 @@ function ProjectsSection() {
                       {proj.icon === "leaf" && (
                         <Cpu className="h-5 w-5" />
                       )}
+                      {proj.icon === "activity" && (
+                        <Activity className="h-5 w-5" />
+                      )}
+                      {proj.icon === "shield" && (
+                        <Shield className="h-5 w-5" />
+                      )}
                     </div>
                     <a
                       href={proj.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-emerald-500 transition-colors"
-                      aria-label={`View ${proj.title}`}
+                      aria-label={`View ${proj.title} on GitHub`}
                     >
                       <ExternalLink className="h-4 w-4" />
                     </a>
@@ -749,6 +763,23 @@ function AchievementsSection() {
 /*  Contact                                                            */
 /* ------------------------------------------------------------------ */
 function ContactSection() {
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
+
+  const handleCopyEmail = useCallback(() => {
+    navigator.clipboard.writeText(resumeData.email).then(() => {
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2500);
+    });
+  }, []);
+
+  const handleCopyPhone = useCallback(() => {
+    navigator.clipboard.writeText(resumeData.phone).then(() => {
+      setPhoneCopied(true);
+      setTimeout(() => setPhoneCopied(false), 2500);
+    });
+  }, []);
+
   return (
     <SectionWrapper id="contact" className="px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
@@ -761,38 +792,75 @@ function ContactSection() {
           <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="p-8">
               <div className="grid gap-6">
-                <a
-                  href={`mailto:${resumeData.email}`}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
+                {/* Email — click to copy */}
+                <button
+                  onClick={handleCopyEmail}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group w-full text-left relative overflow-hidden"
                 >
                   <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
-                    <Mail className="h-5 w-5" />
+                    {emailCopied ? <Check className="h-5 w-5" /> : <Mail className="h-5 w-5" />}
                   </div>
-                  <div>
-                    <p className="text-sm font-medium">Email</p>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">
+                      {emailCopied ? "Copied to clipboard!" : "Email"}
+                    </p>
                     <p className="text-sm text-muted-foreground">
                       {resumeData.email}
                     </p>
                   </div>
-                </a>
+                  <div className="text-muted-foreground group-hover:text-emerald-500 transition-colors">
+                    {emailCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                  </div>
+                  {emailCopied && (
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 origin-left"
+                    />
+                  )}
+                </button>
 
-                <a
-                  href={`tel:${resumeData.phone}`}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
-                >
-                  <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">Phone</p>
-                    <p className="text-sm text-muted-foreground">
-                      {resumeData.phone}
-                    </p>
-                  </div>
-                </a>
+                {/* Phone — click to copy, or tap call */}
+                <div className="flex items-stretch gap-2">
+                  <button
+                    onClick={handleCopyPhone}
+                    className="flex flex-1 items-center gap-4 p-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group text-left relative overflow-hidden"
+                  >
+                    <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
+                      {phoneCopied ? <Check className="h-5 w-5" /> : <Phone className="h-5 w-5" />}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">
+                        {phoneCopied ? "Copied!" : "Phone"}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {resumeData.phone}
+                      </p>
+                    </div>
+                    <div className="text-muted-foreground group-hover:text-emerald-500 transition-colors">
+                      {phoneCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    </div>
+                    {phoneCopied && (
+                      <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 origin-left"
+                      />
+                    )}
+                  </button>
+                  <a
+                    href={`tel:${resumeData.phone}`}
+                    className="flex items-center justify-center px-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all text-emerald-500 text-xs font-medium"
+                    title="Call directly"
+                  >
+                    Call
+                  </a>
+                </div>
 
                 <a
                   href={resumeData.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
                 >
                   <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
@@ -808,6 +876,8 @@ function ContactSection() {
 
                 <a
                   href={resumeData.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 rounded-xl border border-border/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group"
                 >
                   <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
@@ -843,6 +913,8 @@ function Footer() {
         <div className="flex items-center gap-4">
           <a
             href={resumeData.github}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
             aria-label="GitHub"
           >
@@ -850,6 +922,8 @@ function Footer() {
           </a>
           <a
             href={resumeData.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
             aria-label="LinkedIn"
           >

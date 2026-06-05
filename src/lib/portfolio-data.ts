@@ -5,8 +5,8 @@ export const resumeData = {
   location: "Hyderabad, Telangana, India",
   phone: "+91 9550379750",
   email: "jyothiswaroop.03.22@gmail.com",
-  github: "#",
-  linkedin: "#",
+  github: "https://github.com/swaroop112233",
+  linkedin: "https://www.linkedin.com/in/jyothi-swaroop-0606a121a/",
 
   summary:
     "AI/ML Engineer and Data Scientist specializing in the development and deployment of production-grade AI systems, agentic workflows, and scalable backend applications. Proven expertise in building production-level RAG frameworks, end-to-end automated ETL pipelines, and optimizing real-time data orchestration using Python, LangChain, and Flask. Strong background in engineering high-impact, localized AI solutions from concept to deployment within production environments.",
@@ -26,16 +26,26 @@ export const resumeData = {
       role: "Machine Learning Intern",
       company: "Luein Analytics",
       type: "Remote",
-      period: "JUN 2025 \u2013 SEP 2025",
+      period: "JUN 2025 – SEP 2025",
       bullets: [
         "Deployed Django-based web applications integrated with predictive machine learning models, leveraging modular backend components for high scalability.",
+      ],
+    },
+    {
+      role: "Machine Learning Intern",
+      company: "1Stop.ai (Powered by Wipro)",
+      type: "Remote",
+      period: "JAN 2025 – APR 2025",
+      bullets: [
+        "Developed and validated supervised ML models using Scikit-learn and Pandas, applying techniques like feature scaling and PCA to boost classification accuracy from 82% to 93%.",
+        "Collaborated cross-functionally in Agile sprints to preprocess data (handling missing values, normalization) and tuned hyperparameters using GridSearchCV, resulting in a 15% improvement in model performance.",
       ],
     },
     {
       role: "ML / Backend Intern",
       company: "Renote.ai",
       type: "Hybrid",
-      period: "FEB 2025 \u2013 MAY 2025",
+      period: "FEB 2025 – MAY 2025",
       bullets: [
         "Developed a sketch-to-UI detection pipeline using Google AI Studio and Gemini LLM, translating hand-drawn wireframes into structured JSON layouts.",
         "Engineered a text-to-video generation microservice utilizing RunwayML APIs, automating prompt handling.",
@@ -49,7 +59,7 @@ export const resumeData = {
       description:
         "Built a real-time hand gesture recognition system using OpenCV and Scikit-learn, achieving 97% classification accuracy. Applied EDA, PCA, and hyperparameter tuning to optimize model performance for webcam-based interaction.",
       tags: ["OpenCV", "Scikit-learn", "PCA", "Real-time"],
-      link: "#",
+      link: "https://github.com/swaroop112233/Hand-Gesture-Recognition",
       icon: "hand",
     },
     {
@@ -57,7 +67,7 @@ export const resumeData = {
       description:
         "Built a pipeline using Google AI Studio to detect UI components from hand-drawn sketches and convert them into JSON layouts. Integrated Gemini LLM for prompt-based classification, enabling rapid UI prototyping.",
       tags: ["Google AI Studio", "Gemini LLM", "JSON", "Prototyping"],
-      link: "#",
+      link: "https://github.com/swaroop112233",
       icon: "layout",
     },
     {
@@ -65,8 +75,24 @@ export const resumeData = {
       description:
         "Developed an image classification model using EfficientNet B0 to detect 12 types of crop pests with 86% accuracy. Deployed a Flask web interface enabling farmers to upload pest images and receive instant treatment suggestions.",
       tags: ["EfficientNet B0", "Flask", "Image Classification", "Agriculture"],
-      link: "#",
+      link: "https://github.com/swaroop112233/pest-detection",
       icon: "leaf",
+    },
+    {
+      title: "Lung Cancer Detection",
+      description:
+        "Built a deep learning model to classify lung CT scan images into cancerous and non-cancerous categories. Used CNN architecture with data augmentation and preprocessing pipelines to improve generalization and detection reliability.",
+      tags: ["CNN", "Deep Learning", "Medical Imaging", "TensorFlow"],
+      link: "https://github.com/swaroop112233/Lung-Cancer-Detection",
+      icon: "activity",
+    },
+    {
+      title: "COVID-19 Detection from Chest X-Rays",
+      description:
+        "Developed a VGG16-based CNN model to detect COVID-19 from chest X-ray images. Applied transfer learning, evaluated performance using accuracy metrics, confusion matrix, and loss curves for clinical-grade reliability.",
+      tags: ["VGG16", "Transfer Learning", "CNN", "Healthcare AI"],
+      link: "https://github.com/swaroop112233/DETECTION-OF-COVID-19-USING-VGG16-IN-CNN",
+      icon: "shield",
     },
   ],
 
@@ -132,7 +158,14 @@ export const resumeData = {
       institution: "Sri Chaitanya Junior College",
       location: "Vijayawada, Andhra Pradesh",
       score: "Score: 967 / 1000",
-      period: "Aug 2019 \u2013 May 2021",
+      period: "Aug 2019 – May 2021",
+    },
+    {
+      degree: "Class X (SSC)",
+      institution: "Sri Chaitanya High School",
+      location: "Ponnur, Andhra Pradesh",
+      score: "GPA: 10.0 / 10.0",
+      period: "2018 – 2019",
     },
   ],
 
