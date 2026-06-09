@@ -30,3 +30,22 @@ Stage Summary:
 - Fully responsive design (mobile + desktop)
 - All resume content accurately represented
 - Screenshots saved to /home/z/my-project/download/
+
+
+git commands used:
+
+cd /home/swaroop/Downloads/portfolio_swaroop
+
+git init
+git add .
+git commit -m "Initial portfolio commit"
+git branch -M main
+git remote add origin https://github.com/swaroop112233/portfolio-swaroop.git
+git push -u origin main
+
+
+and to run the commands used-
+
+npm run db:generate
+npm run db:push
+npm run dev

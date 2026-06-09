@@ -55,6 +55,30 @@ export const resumeData = {
 
   projects: [
     {
+      title: "Agentic AI Report Automation",
+      description:
+        "Engineered an enterprise-grade Agentic AI chatbot using LangChain's tool-calling agent with Qwen 2.5 LLM to automate Power BI report generation through natural conversation. Features dynamic tool registry, fuzzy input validation against master data, Azure AD authentication, and automated PDF export with email delivery.",
+      tags: ["LangChain", "Agentic AI", "Power BI", "FastAPI", "MongoDB"],
+      link: "https://github.com/swaroop112233",
+      icon: "report",
+    },
+    {
+      title: "Multilingual RAG Chatbot",
+      description:
+        "Developed a production-ready RAG chatbot using Flask and Qwen 2.5 LLM that answers questions from uploaded PDFs and web sources with precise source attribution (document name & page number). Supports 5 languages with auto-detection, voice input, session memory, and dynamic runtime source ingestion via REST APIs.",
+      tags: ["RAG", "FAISS", "Flask", "LangChain", "Multilingual"],
+      link: "https://github.com/swaroop112233",
+      icon: "brain",
+    },
+    {
+      title: "Fine-tuned Recipe Chatbot",
+      description:
+        "Built a local AI chef chatbot by fine-tuning Llama 3.2 (3B) on 50K recipes using Unsloth on Google Colab, then deploying locally via Ollama in GGUF format. Features a FastAPI backend that parses structured recipe JSON and a Streamlit chat UI for ingredient-based recipe generation.",
+      tags: ["Llama 3.2", "Fine-tuning", "Ollama", "FastAPI", "Streamlit"],
+      link: "https://github.com/swaroop112233/fine-tuned-Recipe-Chatbot",
+      icon: "chef",
+    },
+    {
       title: "Gesture Recognition for HCI",
       description:
         "Built a real-time hand gesture recognition system using OpenCV and Scikit-learn, achieving 97% classification accuracy. Applied EDA, PCA, and hyperparameter tuning to optimize model performance for webcam-based interaction.",
@@ -105,6 +129,8 @@ export const resumeData = {
       "Git",
     ],
     aiMl: [
+      "Agentic AI",
+      "Vector Embeddings",
       "Deep Learning",
       "Generative AI",
       "LLMs",

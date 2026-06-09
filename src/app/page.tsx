@@ -37,6 +37,8 @@ import {
   Send,
   Activity,
   Shield,
+  ChefHat,
+  FileText,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -566,6 +568,15 @@ function ProjectsSection() {
                       )}
                       {proj.icon === "shield" && (
                         <Shield className="h-5 w-5" />
+                      )}
+                      {proj.icon === "chef" && (
+                        <ChefHat className="h-5 w-5" />
+                      )}
+                      {proj.icon === "report" && (
+                        <FileText className="h-5 w-5" />
+                      )}
+                      {proj.icon === "brain" && (
+                        <Brain className="h-5 w-5" />
                       )}
                     </div>
                     <a
